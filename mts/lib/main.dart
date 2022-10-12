@@ -53,7 +53,7 @@ class _TodoListPageState extends State<TodoListPage> {
         onPressed: () async {
           final newListText = await Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
-              return TodoListPage();
+              return TodoAddPage();
             }),
           );
           if (newListText != null) {
@@ -72,7 +72,7 @@ class _TodoListPageState extends State<TodoListPage> {
 //リスト追加画面用widget
 class TodoAddPage extends StatefulWidget {
   @override
-  _TodoAddPageState creatState() => _TodoAddPageState();
+  _TodoAddPageState createState() => _TodoAddPageState();
 }
 
 class _TodoAddPageState extends State<TodoAddPage> {
@@ -106,6 +106,8 @@ class _TodoAddPageState extends State<TodoAddPage> {
                     onPrimary: Colors.white,
                   ),
                   onPressed: () {
+                    //popでまえの画面に戻る
+                    //popの引数から前の画面にデータを渡す
                     Navigator.of(context).pop(_text);
                   },
                   child: Text('リスト追加'),
