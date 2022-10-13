@@ -72,7 +72,7 @@ class _TodoListPageState extends State<TodoListPage> {
 //リスト追加画面用widget
 class TodoAddPage extends StatefulWidget {
   @override
-  _TodoAddPageState creatState() => _TodoAddPageState();
+  _TodoAddPageState createState() => _TodoAddPageState();
 }
 
 class _TodoAddPageState extends State<TodoAddPage> {
