@@ -44,9 +44,51 @@ class _TodoListPageState extends State<TodoListPage> {
       body: ListView.builder(
         itemCount: todoList.length,
         itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              title: Text(todoList[index]),
+          var item = todoList[index];
+          return Slidable(
+            key: UniqueKey(),
+            startActionPane: ActionPane(
+              motion: const StretchMotion(),
+              extentRatio: 0.25,
+              children: [
+                SlidableAction(
+                  onPressed: (context) {
+                    print('a');
+                  },
+                  backgroundColor: Colors.black54,
+                  foregroundColor: Colors.white,
+                  icon: Icons.edit,
+                  label: '編集',
+                ),
+              ],
+            ),
+            endActionPane: ActionPane(
+                motion: const StretchMotion(),
+                extentRatio: 0.3,
+                dismissible: DismissiblePane(
+                  onDismissed: () {
+                    setState(() {
+                      todoList.removeAt(index);
+                    });
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(content: Text('削除しました')));
+                  },
+                ),
+                children: [
+                  SlidableAction(
+                    onPressed: (context) {
+                      print('削除');
+                    },
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    icon: Icons.delete,
+                    label: '削除',
+                  ),
+                ]),
+            child: Card(
+              child: ListTile(
+                title: Text(todoList[index]),
+              ),
             ),
           );
         },
@@ -74,6 +116,7 @@ class _TodoListPageState extends State<TodoListPage> {
 //リスト追加画面用widget
 class TodoAddPage extends StatefulWidget {
   @override
+  const TodoAddPage({Key? key}) : super(key: key);
   _TodoAddPageState createState() => _TodoAddPageState();
 }
 
