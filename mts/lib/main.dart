@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 void main() {
   // 最初に表示するWidget
@@ -27,6 +28,7 @@ class MyTodoApp extends StatelessWidget {
 
 // リスト一覧画面用Widgetclass TodoListPage extends StatefulWidget {
 class TodoListPage extends StatefulWidget {
+  const TodoListPage({Key? key}) : super(key: key);
   @override
   _TodoListPageState createState() => _TodoListPageState();
 }
