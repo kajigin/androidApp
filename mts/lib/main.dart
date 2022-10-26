@@ -48,6 +48,7 @@ class _TodoListPageState extends State<TodoListPage> {
           return Slidable(
             key: UniqueKey(),
             startActionPane: ActionPane(
+              //右にスライド
               motion: const StretchMotion(),
               extentRatio: 0.25,
               children: [
@@ -66,11 +67,12 @@ class _TodoListPageState extends State<TodoListPage> {
                 motion: const StretchMotion(),
                 extentRatio: 0.3,
                 dismissible: DismissiblePane(
+                  //左にスライド
                   onDismissed: () {
                     setState(() {
-                      todoList.removeAt(index);
+                      todoList.removeAt(index); //スライドしたCARDを削除
                     });
-                    ScaffoldMessenger.of(context)
+                    ScaffoldMessenger.of(context) //削除した後に画面下部にテキストを出す
                         .showSnackBar(const SnackBar(content: Text('削除しました')));
                   },
                 ),
@@ -94,20 +96,24 @@ class _TodoListPageState extends State<TodoListPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        //右下にボタンを作るWidget
         onPressed: () async {
+          //ボタンが押されたときの処理
           final newListText = await Navigator.of(context).push(
+            //画面遷移
             MaterialPageRoute(builder: (context) {
-              return TodoAddPage();
+              return TodoAddPage(); //画面を指定
             }),
           );
           if (newListText != null) {
             //キャンセルするとnewListTextがnullになる
             setState(() {
+              //画面を更新
               todoList.add(newListText);
             });
           }
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add), //アイコンを指定
       ),
     );
   }
