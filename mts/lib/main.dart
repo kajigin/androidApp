@@ -26,7 +26,7 @@ class MyTodoApp extends StatelessWidget {
   }
 }
 
-// リスト一覧画面用Widgetclass TodoListPage extends StatefulWidget {
+// リスト一覧画面用
 class TodoListPage extends StatefulWidget {
   const TodoListPage({Key? key}) : super(key: key);
   @override
