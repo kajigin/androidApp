@@ -79,7 +79,12 @@ class _TodoListPageState extends State<TodoListPage> {
                 children: [
                   SlidableAction(
                     onPressed: (context) {
-                      print('削除');
+                      setState(() {
+                        todoList.removeAt(index); //スライドしたCARDを削除
+                      });
+                      ScaffoldMessenger.of(context) //削除した後に画面下部にテキストを出す
+                          .showSnackBar(
+                              const SnackBar(content: Text('削除しました')));
                     },
                     backgroundColor: Colors.red,
                     foregroundColor: Colors.white,
@@ -177,5 +182,18 @@ class _TodoAddPageState extends State<TodoAddPage> {
             ],
           ),
         ));
+  }
+}
+
+class ToDoUpdatePage extends StatefulWidget {
+  @override
+  const ToDoUpdatePage({Key? key}) : super(key: key);
+  _ToDoUpdatePageState createState() => _ToDoUpdatePageState();
+}
+
+class _ToDoUpdatePageState extends State<ToDoUpdatePage>{
+  @override
+  Widget build(BluidContext context) {
+    return Scaffold()
   }
 }
