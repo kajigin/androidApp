@@ -79,7 +79,12 @@ class _TodoListPageState extends State<TodoListPage> {
                 children: [
                   SlidableAction(
                     onPressed: (context) {
-                      print('削除');
+                      setState(() {
+                        todoList.removeAt(index); //スライドしたCARDを削除
+                      });
+                      ScaffoldMessenger.of(context) //削除した後に画面下部にテキストを出す
+                          .showSnackBar(
+                              const SnackBar(content: Text('削除しました')));
                     },
                     backgroundColor: Colors.red,
                     foregroundColor: Colors.white,
